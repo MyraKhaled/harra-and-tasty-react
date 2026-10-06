@@ -1,0 +1,670 @@
+/* ==========================================================
+   HARRA FOOD — Feuille de style personnalisée
+   Identité : harissa, braise, cuisine tunisienne piquante
+   ========================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap");
+
+/* ---------- 1. Variables d'identité ---------- */
+:root,
+[data-bs-theme="light"] {
+  --harra: #c1121f;
+  --harra-dark: #780000;
+  --harra-light: #e63946;
+  --ember: #f77f00;
+
+  --bs-body-bg: #fbf5ee;
+  --bs-body-color: #2a1512;
+  --bs-secondary-color: #6d5650;
+  --bs-tertiary-bg: #f1e6da;
+  --bs-border-color: #e6d6c6;
+  --bs-body-font-family: "DM Sans", system-ui, sans-serif;
+
+  --surface: #ffffff;
+  --shadow-soft: 0 8px 28px rgba(120, 0, 0, 0.1);
+  --shadow-hot: 0 14px 34px rgba(193, 18, 31, 0.28);
+}
+
+[data-bs-theme="dark"] {
+  --harra: #e63946;
+  --harra-dark: #9d0208;
+  --harra-light: #ff5a66;
+  --ember: #ff9f1c;
+
+  --bs-body-bg: #120908;
+  --bs-body-color: #f3e7e1;
+  --bs-secondary-color: #b9a39b;
+  --bs-tertiary-bg: #1d1210;
+  --bs-border-color: #3a2420;
+
+  --surface: #1b100e;
+  --shadow-soft: 0 8px 28px rgba(0, 0, 0, 0.45);
+  --shadow-hot: 0 14px 34px rgba(230, 57, 70, 0.3);
+}
+
+/* ---------- 2. Base ---------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--bs-body-font-family);
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  transition: background-color 0.35s ease, color 0.35s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5,
+.display-5, .display-6,
+.navbar-brand {
+  font-family: "Playfair Display", Georgia, serif;
+  letter-spacing: -0.01em;
+}
+
+.text-secondary,
+.text-muted {
+  color: var(--bs-secondary-color) !important;
+}
+
+::selection {
+  background: var(--harra);
+  color: #fff;
+}
+
+/* Barre de défilement personnalisée */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bs-body-bg); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--harra), var(--harra-dark));
+  border-radius: 10px;
+}
+
+.section-block,
+#top {
+  scroll-margin-top: 90px;
+}
+
+/* ---------- 3. Couleurs utilitaires ---------- */
+.text-harra { color: var(--harra) !important; }
+
+.bg-harra {
+  background-color: var(--harra) !important;
+  color: #fff !important;
+}
+
+/* Petits badges de section : "NOTRE HISTOIRE", "LIVRAISON"... */
+.badge {
+  font-family: var(--bs-body-font-family);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.55em 1.1em;
+  border-radius: 50px;
+}
+
+.section-block .badge.bg-harra {
+  background: transparent !important;
+  color: var(--harra) !important;
+  border: 1px solid var(--harra);
+}
+
+/* Titres de section avec trait "braise" */
+.section-block h2 {
+  position: relative;
+  padding-bottom: 1rem;
+}
+.section-block .text-center h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 4px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--harra-dark), var(--harra), var(--ember));
+}
+
+/* ---------- 4. Boutons ---------- */
+.btn {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: all 0.3s ease;
+}
+
+.btn-harra {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--harra), var(--harra-dark));
+  border: none;
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(193, 18, 31, 0.35);
+}
+.btn-harra::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.28),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+.btn-harra:hover {
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hot);
+}
+.btn-harra:hover::before {
+  left: 130%;
+}
+.btn-harra:active {
+  transform: translateY(0);
+}
+
+.btn-outline-harra {
+  background: transparent;
+  color: var(--harra);
+  border: 1.5px solid var(--harra);
+}
+.btn-outline-harra:hover {
+  background: var(--harra);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(193, 18, 31, 0.3);
+}
+
+/* ---------- 5. Navbar ---------- */
+.harra-navbar {
+  background-color: color-mix(in srgb, var(--bs-body-bg) 88%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--bs-border-color);
+  padding: 0.8rem 0;
+}
+.harra-navbar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--harra-dark), var(--harra), var(--ember), var(--harra), var(--harra-dark));
+}
+
+.navbar-brand {
+  color: var(--bs-body-color);
+  font-size: 1.6rem !important;
+  letter-spacing: 0.01em;
+}
+
+.nav-harra {
+  position: relative;
+  color: var(--bs-body-color);
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.4rem 0.9rem !important;
+  transition: color 0.25s;
+}
+.nav-harra::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--harra);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+.nav-harra:hover {
+  color: var(--harra);
+}
+.nav-harra:hover::after {
+  width: 60%;
+}
+
+.search-box {
+  max-width: 280px;
+  border-radius: 50px;
+  overflow: hidden;
+  background: var(--bs-tertiary-bg);
+  border: 1px solid var(--bs-border-color);
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.search-box:focus-within {
+  border-color: var(--harra);
+  box-shadow: 0 0 0 0.2rem rgba(193, 18, 31, 0.15);
+}
+.search-box .input-group-text,
+.search-box .form-control {
+  background: transparent;
+  color: var(--bs-body-color);
+}
+.search-box .form-control:focus {
+  box-shadow: none;
+}
+.search-box .form-control::placeholder {
+  color: var(--bs-secondary-color);
+}
+
+/* ---------- 6. Hero ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  border-radius: 28px !important;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(247, 127, 0, 0.35), transparent 45%),
+    linear-gradient(100deg, rgba(60, 0, 0, 0.95) 0%, rgba(140, 8, 20, 0.82) 55%, rgba(193, 18, 31, 0.5) 100%),
+    url("https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1400") center / cover;
+  box-shadow: var(--shadow-hot);
+}
+
+/* Grain léger façon papier / épices */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.12;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Grand cercle décoratif */
+.hero::after {
+  content: "";
+  position: absolute;
+  right: -90px;
+  bottom: -110px;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 0 0 40px rgba(255, 255, 255, 0.03);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 580px;
+  animation: riseIn 0.9s ease both;
+}
+.hero h1 {
+  font-weight: 800;
+  line-height: 1.12;
+  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.35);
+}
+.hero .text-warning {
+  color: var(--ember) !important;
+  font-style: italic;
+}
+.hero .badge {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: var(--harra-dark) !important;
+  border: none;
+}
+.hero .lead {
+  font-size: 1.1rem;
+  opacity: 0.92;
+}
+
+/* ---------- 7. À propos ---------- */
+.value-card,
+.step-card,
+.form-card {
+  background: var(--surface);
+  border: 1px solid var(--bs-border-color);
+  box-shadow: var(--shadow-soft) !important;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.value-card {
+  position: relative;
+  overflow: hidden;
+}
+.value-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(var(--harra), var(--ember));
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.35s ease;
+}
+.value-card:hover {
+  transform: translateX(6px);
+  border-color: var(--harra);
+}
+.value-card:hover::before {
+  transform: scaleY(1);
+}
+
+.value-icon,
+.step-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(230, 57, 70, 0.22), rgba(193, 18, 31, 0.08));
+  border: 1px solid rgba(193, 18, 31, 0.25);
+}
+.value-icon {
+  width: 60px;
+  height: 60px;
+  font-size: 1.8rem;
+}
+.step-icon {
+  width: 84px;
+  height: 84px;
+  font-size: 2.2rem;
+}
+
+.step-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--harra);
+  box-shadow: var(--shadow-hot) !important;
+}
+
+/* Chiffres clés */
+#about h3 {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+/* ---------- 8. Catégories (filtre) ---------- */
+.section-block .btn.rounded-pill {
+  font-size: 0.9rem;
+  padding: 0.5rem 1.3rem;
+}
+
+/* ---------- 9. Cartes produits ---------- */
+.product-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--bs-border-color) !important;
+  border-radius: 20px !important;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft) !important;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+/* Barre de chaleur en bas de la carte */
+.product-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--harra-dark), var(--harra), var(--ember));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s ease;
+}
+.product-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--harra) !important;
+  box-shadow: var(--shadow-hot) !important;
+}
+.product-card:hover::after {
+  transform: scaleX(1);
+}
+
+.product-card .position-relative {
+  overflow: hidden;
+}
+.product-img {
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.product-card:hover .product-img {
+  transform: scale(1.08);
+}
+.img-fallback {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  background: linear-gradient(135deg, var(--bs-tertiary-bg), var(--bs-border-color));
+}
+
+.product-card .card-body {
+  background: var(--surface);
+  color: var(--bs-body-color);
+}
+.product-card .card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.product-card .badge.bg-harra {
+  background: rgba(120, 0, 0, 0.9) !important;
+  backdrop-filter: blur(4px);
+  font-size: 0.65rem;
+}
+
+/* Badge "Brûle la langue" qui pulse comme une braise */
+.product-card .badge.bg-dark {
+  background: linear-gradient(135deg, var(--harra), var(--ember)) !important;
+  color: #fff !important;
+  font-size: 0.65rem;
+  animation: ember 1.8s ease-in-out infinite;
+}
+
+.like-btn {
+  font-size: 1.7rem;
+  line-height: 1;
+  border: none;
+  background: transparent;
+  color: var(--bs-secondary-color);
+  padding: 0.1rem 0.4rem;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.like-btn:hover {
+  transform: scale(1.3);
+  color: var(--harra);
+}
+.like-btn:active {
+  transform: scale(0.85);
+}
+.like-btn .text-danger {
+  color: var(--harra) !important;
+  display: inline-block;
+  animation: heartPop 0.35s ease;
+}
+
+.product-card .fs-5 {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  color: var(--harra);
+}
+
+/* ---------- 10. Contact ---------- */
+.contact-card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--harra-dark), var(--harra));
+  box-shadow: var(--shadow-hot);
+}
+.contact-card::after {
+  content: "";
+  position: absolute;
+  right: -60px;
+  top: -60px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+}
+.contact-card h4 {
+  font-weight: 700;
+}
+
+.form-card .form-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--bs-secondary-color);
+}
+.form-card .form-control {
+  background: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  border: 1px solid var(--bs-border-color);
+  border-radius: 12px;
+  padding: 0.7rem 1rem;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.form-card .form-control:focus {
+  border-color: var(--harra);
+  box-shadow: 0 0 0 0.2rem rgba(193, 18, 31, 0.18);
+}
+
+/* ---------- 11. Footer ---------- */
+.harra-footer {
+  position: relative;
+  background: #0f0505;
+  border-top: none;
+}
+.harra-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--harra-dark), var(--harra), var(--ember), var(--harra), var(--harra-dark));
+}
+.harra-footer h4,
+.harra-footer h6 {
+  color: #fff;
+}
+.harra-footer h6 {
+  font-family: var(--bs-body-font-family);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.75rem;
+  color: var(--ember);
+}
+
+.footer-link {
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  line-height: 2;
+  transition: color 0.2s, transform 0.2s;
+}
+.footer-link:hover {
+  color: #fff;
+  transform: translateX(5px);
+}
+
+.social-icon {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.social-icon:hover {
+  background: var(--harra);
+  border-color: var(--harra);
+  transform: translateY(-4px);
+}
+
+/* ---------- 12. Animations ---------- */
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ember {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(247, 127, 0, 0.55); }
+  50%      { box-shadow: 0 0 0 7px rgba(247, 127, 0, 0); }
+}
+
+@keyframes heartPop {
+  0%   { transform: scale(0.5); }
+  70%  { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+
+.section-block {
+  animation: riseIn 0.8s ease both;
+}
+
+/* ---------- 13. Responsive ---------- */
+@media (max-width: 767px) {
+  .hero {
+    min-height: 360px;
+    border-radius: 20px !important;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .search-box {
+    max-width: 100%;
+    order: 3;
+    width: 100%;
+  }
+}
+
+/* Respect des préférences d'accessibilité */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------- Icônes Font Awesome ---------- */
+.pepper-off {
+  color: var(--bs-border-color);
+}
+
+.value-icon i,
+.step-icon i {
+  font-size: 1.5rem;
+}
+.step-icon i {
+  font-size: 2rem;
+}
+
+.img-fallback i {
+  font-size: 3.5rem;
+  color: var(--harra);
+  opacity: 0.6;
+}
+
+.contact-card i {
+  width: 20px;
+  text-align: center;
+}
+
+.harra-footer h4 .text-harra {
+  color: var(--harra-light) !important;
+}
+
+.social-icon i {
+  color: #fff;
+}
